@@ -476,3 +476,38 @@ function playGame(){
     
 }
 playGame();
+
+
+let deck2 = [];
+for(let i = 1; i <= 60; i++){
+    deck2.push(i);
+}
+
+deck2.sort(()=>Math.random - 0.5);
+
+let players = [
+    {name : "dog", cards:deck.slice(0,4),score:0},
+    {name : "cat", cards:deck.slice(4,8), score:0},
+    {name : "fox", cards:deck.slice(8,12)}
+];
+
+let playedCards = [];
+
+for (let player of players){
+    let card = player.cards.pop();
+    playedCards.push({name:player.name, card:card});
+}
+
+let winner = playedCards[0];
+
+for(let played of playedCards){
+    if(played.card < winner.card){
+        winner = played;
+    }
+
+for (let player of players){
+    if (player.name === winner.name){
+        player.score++;
+    }
+}    
+}
